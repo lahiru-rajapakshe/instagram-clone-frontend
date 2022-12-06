@@ -6,7 +6,8 @@ export class UserSignUpPage extends Component {
         displayName:'',
         username:'',
         password:'',
-        passwordRepeat:''
+        passwordRepeat:'',
+        pendingApiCall:false
 
     };
     
@@ -43,6 +44,7 @@ export class UserSignUpPage extends Component {
             displayName:this.state.displayName,
             password:this.state.password
         }
+        this.setState({pendingApiCall:true})
         this.props.actions.postSignup(user);
     };
   render() {
@@ -62,7 +64,7 @@ export class UserSignUpPage extends Component {
       <br></br>
       <br></br>
       
-      <button onClick={this.onClickSignUp}>Signup</button>
+      <button onClick={this.onClickSignUp} disabled={this.state.pendingApiCall}>Signup</button>
       </div>
 
     )
